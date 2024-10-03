@@ -8,10 +8,10 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class RegislationController extends AbstractController
 {
-    #[Route('/regislation', name: 'app_regislation')]
-    public function index(): Response
+    #[Route('/register', name: 'app_regislation', methods: ['get', 'post'])]
+    public function register(): Response
     {
-        return $this->render('regislation/index.html.twig', [
+        return $this->render('regislation/register.html.twig', [
             'controller_name' => 'RegislationController',
         ]);
     }
