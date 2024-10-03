@@ -6,6 +6,7 @@ use App\Repository\CoverLetterRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: CoverLetterRepository::class)]
 class CoverLetter
 {
@@ -31,6 +32,20 @@ class CoverLetter
     #[ORM\JoinColumn(nullable: false)]
     private ?User $app_user = null;
 
+    #[ORM\PrePersist]
+    public function prePersist(): void
+    {
+        $this->created_at = new \DateTimeImmutable();
+        $this->updated_at = new \DateTimeImmutable();
+    }
+
+    #[ORM\PreUpdate]
+    public function preUpdate(): void
+    {
+        $this->updated_at = new \DateTimeImmutable();
+    }
+
+    
     public function getId(): ?int
     {
         return $this->id;

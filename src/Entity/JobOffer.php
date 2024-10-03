@@ -53,16 +53,9 @@ class JobOffer
     #[ORM\OneToMany(targetEntity: LinkedInMessage::class, mappedBy: 'jobOffer', orphanRemoval: true)]
     private Collection $linkedInMessages;
 
-    /**
-     * @var Collection<int, CoverLetter>
-     */
-    #[ORM\OneToMany(targetEntity: CoverLetter::class, mappedBy: 'jobOffer', orphanRemoval: true)]
-    private Collection $coverLetters;
-
     public function __construct()
     {
         $this->linkedInMessages = new ArrayCollection();
-        $this->coverLetters = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -214,36 +207,6 @@ class JobOffer
             // set the owning side to null (unless already changed)
             if ($linkedInMessage->getJobOffer() === $this) {
                 $linkedInMessage->setJobOffer(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, CoverLetter>
-     */
-    public function getCoverLetters(): Collection
-    {
-        return $this->coverLetters;
-    }
-
-    public function addCoverLetter(CoverLetter $coverLetter): static
-    {
-        if (!$this->coverLetters->contains($coverLetter)) {
-            $this->coverLetters->add($coverLetter);
-            $coverLetter->setJobOffer($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCoverLetter(CoverLetter $coverLetter): static
-    {
-        if ($this->coverLetters->removeElement($coverLetter)) {
-            // set the owning side to null (unless already changed)
-            if ($coverLetter->getJobOffer() === $this) {
-                $coverLetter->setJobOffer(null);
             }
         }
 
