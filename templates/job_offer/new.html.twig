@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle offre d'emploi{% endblock %}
+
+{% block body %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">Créer une nouvelle offre d'emploi</h1>
+
+    {{ form_start(form, {'attr': {'class': 'space-y-4'}}) }}
+        {{ form_widget(form) }}
+        <div class="flex justify-end space-x-4">
+            <a href="{{ path('app_job_offer_list') }}" class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400">Annuler</a>
+            <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Créer</button>
+        </div>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

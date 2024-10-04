@@ -1,20 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil - Offres d'emploi{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="container px-4 py-8 mx-auto">
+    <h1 class="mb-6 text-3xl font-bold">Offres d'emploi récentes</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Users/eun-youngbouillot/Documents/profilautop/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>/Users/eun-youngbouillot/Documents/profilautop/templates/home/index.html.twig</code></li>
-    </ul>
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {% for jobOffer in jobOffers %}
+            <div class="p-6 bg-white rounded-lg shadow-md">
+                <h2 class="mb-2 text-xl font-semibold">{{ jobOffer.title }}</h2>
+                <p class="mb-2 text-gray-600">{{ jobOffer.company }}</p>
+                <p class="mb-2 text-gray-600">{{ jobOffer.location }}</p>
+                <p class="mb-2 font-semibold text-green-600">{{ jobOffer.salary }}</p>
+                <p class="mb-4 text-sm text-gray-500">Date limite : {{ jobOffer.applicationDate|date('d/m/Y') }}</p>
+                <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium {{ jobOffer.status == 'Accepté' ? 'text-green-600' : 'text-yellow-600' }}">
+                        {{ jobOffer.status }}
+                    </span>
+                    <a href="{{ jobOffer.link }}" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-600">
+                        Postuler
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
