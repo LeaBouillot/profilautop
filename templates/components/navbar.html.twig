@@ -1,0 +1,37 @@
+<nav class="flex items-center justify-between p-2 bg-slate-50">
+	<a href="{{path('app_home')}}" class="flex items-center gap-1">
+		<img src="{{ asset('img/logo_top.png')}}" alt="logo" width="60" class="transition-transform duration-200 ease-in-out rounded-full hover:scale-95">
+		<p>Profil au Top</p>
+	</a>
+	
+
+	<div class="flex items-center justify-between gap-4">
+
+		{% if app.user %}
+			{####}
+			<a href="{{path('app_job_offer')}}" class="p-2 border-2 rounded-md border-neutral-700" title="All Job Offers">
+				{{ ux_icon('mdi:archive-outline',{'class': 'h-6 w-6'}) }}
+				<p>All Job Offers</p>
+			</a>
+
+			<a href="{{path('app_job_offer_new')}}" class="p-2 border-2 rounded-md border-neutral-700" title='Add new job'>
+				{{ ux_icon('mdi:home-add',{'class': 'h-6 w-6'}) }}
+			</a>
+			<a href="{{path('linked_in_message_show', {'id':app.user.id})}}" data-tooltip="Logout" class="p-2 border-2 rounded-md border-neutral-700" title='Linked In Messages'>
+				{{ ux_icon('mdi:message-processing-outline',{'class': 'h-6 w-6'}) }}
+			</a>
+
+			<a href="{{path('app_cover_letter_all')}}" class="p-2 border-2 rounded-md border-neutral-700" title='Cover Letters'>
+				{{ ux_icon('mdi:book-open',{'class': 'h-6 w-6'}) }}
+			</a>
+			{####}
+			<div class="flex items-center justify-between gap-4">
+
+				{{ include('components/_partials/navbar_login.html.twig') }}
+
+			{% else %}
+				{{ include('components/_partials/navbar_logout.html.twig') }}
+			{% endif %}
+		</div>
+	</div>
+</nav>
