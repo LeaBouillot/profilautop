@@ -30,36 +30,36 @@
 					<label for="username" class="block mb-2 font-medium text-gray-700">
 						{{ "Email address"|trans }}
 					</label>
-					<input type="email" value="{{ last_username }}" name="_username" id="username" class="w-full p-2 border-2 rounded-md border-violet-950 focus:border-violet-600" autocomplete="email" required autofocus>
+					<input type="email" value="{{ last_username }}" name="_username" id="username" class="w-full p-2 border-2 rounded-md border-blue-950 focus:border-blue-600" autocomplete="email" required autofocus>
 				</div>
 
 				<div class="mb-4">
 					<label for="password" class="block mb-2 font-medium text-gray-700">
 						{{ "Type your password"|trans }}
 					</label>
-					<input type="password" name="_password" id="password" class="w-full p-2 border-2 rounded-md border-violet-950 focus:border-violet-600" autocomplete="current-password" required>
+					<input type="password" name="_password" id="password" class="w-full p-2 border-2 rounded-md border-blue-950 focus:border-blue-600" autocomplete="current-password" required>
 				</div>
 
 				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
 				<div class="flex flex-col items-center justify-between gap-2 mb-4">
 					<div class="flex items-center">
-						<input type="checkbox" name="_remember_me" id="_remember_me" class="w-4 h-4 border-gray-300 rounded text-violet-600 focus:ring-violet-500">
+						<input type="checkbox" name="_remember_me" id="_remember_me" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
 						<l abel for="_remember_me" class="block ml-2 text-sm text-gray-900">{{"Remember me"|trans }}</l>
 					</div>
 					<div class="text-sm">
-						<a href="#" class="font-medium text-violet-600 hover:text-violet-500">{{"Forgot your password?"|trans }}</a>
+						<a href="#" class="font-medium text-blue-600 hover:text-blue-500">{{"Forgot your password?"|trans }}</a>
 					</div>
 				</div>
 
-				<button type="submit" class="flex items-center justify-center w-full gap-2 p-2 mt-4 text-white rounded-md bg-violet-600 hover:bg-violet-700">
+				<button type="submit" class="flex items-center justify-center w-full gap-2 p-2 mt-4 text-white bg-blue-500 rounded-md hover:bg-blue-700">
 					{{ ux_icon('mdi:login', { 'class': 'h-6 w-6' }) }}
 					{{ "Sign in"|trans }}
 				</button>
 			</form>
 		</div>
 		<p class="pb-48 mb-4 text-sm text-center text-slate-600">{{"Don't have an account?"|trans }}
-			<a href="{{ path('app_registration') }}" class="text-violet-600 hover:text-violet-800">{{"Register now"|trans }}</a>
+			<a href="{{ path('app_registration') }}" class="text-blue-600 hover:text-blue-800">{{"Register now"|trans }}</a>
 		</p>
 	</main>
 {% endblock %}

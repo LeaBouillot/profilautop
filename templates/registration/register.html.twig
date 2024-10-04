@@ -8,7 +8,7 @@
         <div class="container px-4">
             <div class="row gx-4 justify-content-center">
                 <div class="col-lg-5">
-                    <h2>Enregistrement</h2>
+                    <h2>INSCRIPTION</h2>
                     <span class="text-muted"><small>*: champ requis</small></span>
 
                     {{ form_errors(registrationForm) }}
@@ -21,8 +21,12 @@
                     {{ form_row(registrationForm.plainPassword, {
                         label: 'Mot de passe'
                     }) }}
+                    <button type="submit" class="flex items-center justify-center w-full gap-2 p-2 mt-4 text-white bg-blue-500 rounded-md hover:bg-blue-700">
+				
+					{{ "Enregistrer"|trans }}
+				</button>
 
-                    <button type="submit" class="btn btn-outline-primary">Enregistrer</button>
+                   
                     {{ form_end(registrationForm) }}
                 </div>
             </div>
