@@ -1,0 +1,25 @@
+
+{# templates/cover_letter/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}cover letter
+{% endblock %}
+
+{% block body %}
+	<h1>Cover letter</h1>
+<div> 
+{% for cover_letter in cover_letters %}
+    <h2>Offre d'emploi : {{ cover_letter.jobOffer.title }}</h2>
+    <h3>Company : {{ cover_letter.jobOffer.company }}</h3>
+    <p>Date de création : {{ cover_letter.createdAt|date('d/m/Y') }}</p>
+    <p>Expérience professionnelle : {{ cover_letter.experience }}</p>
+    
+	{# Afficher la lettre de motivation #}
+	<h2>Lettre de motivation</h2>
+	<p>{{ cover_letter.content }}</p>
+	<a href="{{ path('app_cover_letter_show', {'id': cover_letter.id}) }}">Voir la lettre de motivation</a>
+
+</div>
+	
+
+{% endblock %}

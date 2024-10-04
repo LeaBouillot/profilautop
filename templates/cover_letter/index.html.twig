@@ -1,20 +1,91 @@
+{# templates/cover_letter/index.html.twig #}
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CoverLetterController!{% endblock %}
+{% block title %}cover letter generate
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+{# templates/cover_letter/lettreMotivation.html.twig #}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Lettre de Motivation - {{ user.firstName }} {{ user.lastName }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .header {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .recipient {
+            margin-bottom: 20px;
+        }
+        .content {
+            margin-bottom: 20px;
+        }
+        .signature {
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        {{ user.firstName }} {{ user.lastName }}<br>
+        {{ user.email }}<br>
+        {% if user.image %}
+            <img src="{{ asset('uploads/user_images/' ~ user.image) }}" alt="Photo de profil" style="width: 100px; height: auto;">
+        {% endif %}
+    </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Users/eun-youngbouillot/Documents/profilautop/src/Controller/CoverLetterController.php</code></li>
-        <li>Your template at <code>/Users/eun-youngbouillot/Documents/profilautop/templates/cover_letter/index.html.twig</code></li>
-    </ul>
-</div>
-{% endblock %}
+    <div class="recipient">
+        {% if jobOffer.contactPerson %}
+            {{ jobOffer.contactPerson }}<br>
+        {% endif %}
+        {{ jobOffer.company }}<br>
+        {% if jobOffer.location %}
+            {{ jobOffer.location }}<br>
+        {% endif %}
+    </div>
+
+    <div class="content">
+        <p>Objet : Candidature pour le poste de {{ jobOffer.title }}</p>
+
+        <p>Madame, Monsieur,</p>
+
+        <p>Je me permets de vous adresser ma candidature pour le poste de {{ jobOffer.title }} au sein de votre entreprise {{ jobOffer.company }}.</p>
+
+        <p>
+            [Ici, insérez le contenu personnalisé de la lettre de motivation. Vous pouvez utiliser les variables suivantes pour personnaliser davantage :]
+            <ul>
+                <li>{{ user.firstName }} : prénom du candidat</li>
+                <li>{{ user.lastName }} : nom du candidat</li>
+                <li>{{ jobOffer.title }} : titre du poste</li>
+                <li>{{ jobOffer.company }} : nom de l'entreprise</li>
+                <li>{{ jobOffer.location }} : lieu du poste (si disponible)</li>
+                <li>{{ jobOffer.salary }} : fourchette de salaire (si disponible)</li>
+            </ul>
+        </p>
+
+        <p>Je reste à votre disposition pour tout renseignement complémentaire ou pour convenir d'un entretien.</p>
+
+        <p>Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.</p>
+    </div>
+
+    <div class="signature">
+        {{ user.firstName }} {{ user.lastName }}
+    </div>
+
+ <p>Merci de votre intérêt pour cette candidature et de votre disponibilité pour un entretien à la date suivante : {{ jobOffer.applicationDate|date('d/m/Y') }}</p>
+ 
+        <p>Candidature envoyée le : {{ jobOffer.applicationDate|date('d/m/Y') }}</p>
+        {# <p>Statut actuel : {{ jobOffer.status }}</p> #}
+
+</body>
+</html>
+   {% endblock %}

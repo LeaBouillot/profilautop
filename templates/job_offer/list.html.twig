@@ -5,7 +5,7 @@
 
 {% block body %}
 	<div class="container px-4 py-8 mx-auto">
-		<h1 class="mb-6 text-3xl font-bold">Offres d'emploi récentes</h1>
+		<h1 class="mb-6 text-3xl font-bold">la gestion de recherche emplois</h1>
 
 		<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
 			{% for jobOffer in jobOffers %}
@@ -20,11 +20,9 @@
 						<span class="text-sm font-medium {{ jobOffer.status == 'Accepté' ? 'text-green-600' : 'text-yellow-600' }}">
 							{{ jobOffer.status }}
 						</span>
-						<a href="{{ jobOffer.link }}" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-600">
-							Postuler
-						</a>
+					
 						<a href="{{ path('app_job_offer_show', {'id': jobOffer.id}) }}" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-600">
-							Enregistrer
+							Gérer
 						</a>
 					</div>
 				</div>
